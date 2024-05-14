@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>实时更新示例</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+<h1>实时更新示例</h1>
+<p id="user-status"></p>
+
+    <input type="button" value="发送数据" onclick="btnSendData()">
+
+
+    <div id="dv">这是一个div</div>
+
+
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        function btnSendData() {
+            var input = {
+                'name': 'tom',
+                'password': '123456'
+            };
+            $.ajax({
+                url: '/addUser',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify(input),
+                success: function (res) {
+                    console.log(res);
+                    document.getElementById("dv").textContent = res['status']
+                }
+            });
+        }
+    </script>
+</body>
+</html>
